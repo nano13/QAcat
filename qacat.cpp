@@ -3,7 +3,7 @@
 #include <QApplication>
 #include <QDebug>
 
-#include <main_window.h>
+#include <qacat_main_window.h>
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     
     QApplication::setApplicationName("QAcat");
     
-    MainWindow mainWin;
+    QAcatMainWindow mainWin;
     //QIcon::setThemeSearchPaths(QStringList("../assets/icons"));
     //QIcon::setThemeName("oxygen");
     //mainWin.setWindowIcon(QIcon("../assets/icons/logo2.png"));
