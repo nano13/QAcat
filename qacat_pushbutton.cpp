@@ -20,3 +20,17 @@ QAcatPushButton::QAcatPushButton(const QIcon &icon, const QString &text, QWidget
 {
     
 }
+
+void QAcatPushButton::focusInEvent(QFocusEvent *e)
+{
+    setStyleSheet("QWidget { background-color: black; color: white;}");
+    
+    QPushButton::focusInEvent(e);
+}
+
+void QAcatPushButton::focusOutEvent(QFocusEvent *e)
+{
+    setStyleSheet("QWidget { background-color: white; color: black;}");
+    
+    QPushButton::focusOutEvent(e);
+}

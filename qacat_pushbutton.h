@@ -16,6 +16,10 @@ private:
 private slots:
     
     
+protected:
+    void focusInEvent(QFocusEvent *);
+    void focusOutEvent(QFocusEvent *);
+    
 signals:
     
     

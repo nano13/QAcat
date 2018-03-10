@@ -75,18 +75,6 @@ void QAcatMainWindow::activateLayoutItem(int index)
         QLayoutItem *current_item = layout->itemAt(index);
         QWidget *current_widget = current_item->widget();
         current_widget->setFocus();
-        
-        if (layout)
-        {
-            for (int i = 0; i < layout->count(); ++i)
-            {
-                QLayoutItem *current_item = layout->itemAt(i);       QWidget *current_widget = current_item->widget();
-                
-                current_widget->setStyleSheet("QWidget { background-color: white; color: black;}");
-            }
-        }
-        
-        current_widget->setStyleSheet("QWidget { background-color: black; color: white;}");
     }
     
 //     QLayout *layout = grid->layout();
