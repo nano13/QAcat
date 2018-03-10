@@ -10,12 +10,11 @@ QAcatLayoutIteratorThread::QAcatLayoutIteratorThread(QThread *parent)
 
 void QAcatLayoutIteratorThread::setLayout(QLayout *layout)
 {
-    this->layout = layout;
+    this->layout = layout->layout();
 }
 
 void QAcatLayoutIteratorThread::run()
 {
-    QLayout *layout = this->layout->layout();
     if (layout) {
         while (true)
         {
