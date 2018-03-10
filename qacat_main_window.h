@@ -16,5 +16,7 @@ private:
     
 private slots:
     void tryoutButtonClicked();
+    void talkButtonClicked();
+    void configButtonClicked();
     void quitButtonClicked();
 };
