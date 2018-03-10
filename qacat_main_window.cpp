@@ -2,9 +2,10 @@
 #include <QtWidgets>
 #include <QWidget>
 #include <QGridLayout>
-#include <QPushButton>
 
 #include <qacat_main_window.h>
+#include <qacat_layout_iterator_thread.h>
+#include <qacat_pushbutton.h>
 
 QAcatMainWindow::QAcatMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,21 +18,23 @@ QAcatMainWindow::QAcatMainWindow(QWidget *parent)
     
     setCentralWidget(central_widget);
     
-    QPushButton *tryoutButton = new QPushButton("tryout");
-    connect(tryoutButton, &QPushButton::clicked, this, &QAcatMainWindow::tryoutButtonClicked);
+    QAcatPushButton *tryoutButton = new QAcatPushButton("tryout");
+    connect(tryoutButton, &QAcatPushButton::clicked, this, &QAcatMainWindow::tryoutButtonClicked);
     grid->addWidget(tryoutButton, 0, 0);
     
-    QPushButton *talkButton = new QPushButton("talk");
-    connect(talkButton, &QPushButton::clicked, this, &QAcatMainWindow::talkButtonClicked);
+    QAcatPushButton *talkButton = new QAcatPushButton("talk");
+    connect(talkButton, &QAcatPushButton::clicked, this, &QAcatMainWindow::talkButtonClicked);
     grid->addWidget(talkButton, 0, 1);
     
-    QPushButton *configButton = new QPushButton("config");
-    connect(configButton, &QPushButton::clicked, this, &QAcatMainWindow::configButtonClicked);
+    QAcatPushButton *configButton = new QAcatPushButton("config");
+    connect(configButton, &QAcatPushButton::clicked, this, &QAcatMainWindow::configButtonClicked);
     grid->addWidget(configButton, 1, 0);
     
-    QPushButton *quitButton = new QPushButton("exit");
-    connect(quitButton, &QPushButton::clicked, this, &QAcatMainWindow::quitButtonClicked);
+    QAcatPushButton *quitButton = new QAcatPushButton("exit");
+    connect(quitButton, &QAcatPushButton::clicked, this, &QAcatMainWindow::quitButtonClicked);
     grid->addWidget(quitButton, 1, 1);
+    
+    startLayoutIterator();
 }
 
 void QAcatMainWindow::tryoutButtonClicked()
@@ -52,4 +55,44 @@ void QAcatMainWindow::configButtonClicked()
 void QAcatMainWindow::quitButtonClicked()
 {
     QCoreApplication::quit();
+}
+
+void QAcatMainWindow::startLayoutIterator()
+{
+    QAcatLayoutIteratorThread *iterator_thread = new QAcatLayoutIteratorThread();
+    connect(iterator_thread, &QAcatLayoutIteratorThread::activateLayoutItem, this, &QAcatMainWindow::activateLayoutItem);
+    
+    iterator_thread->setLayout(grid);
+    iterator_thread->start();
+}
+
+void QAcatMainWindow::activateLayoutItem(int index)
+{
+    
+    QLayout *layout = grid->layout();
+    if (layout)
+    {
+        QLayoutItem *current_item = layout->itemAt(index);
+        QWidget *current_widget = current_item->widget();
+        current_widget->setFocus();
+        
+        if (layout)
+        {
+            for (int i = 0; i < layout->count(); ++i)
+            {
+                QLayoutItem *current_item = layout->itemAt(i);       QWidget *current_widget = current_item->widget();
+                
+                current_widget->setStyleSheet("QWidget { background-color: white; color: black;}");
+            }
+        }
+        
+        current_widget->setStyleSheet("QWidget { background-color: black; color: white;}");
+    }
+    
+//     QLayout *layout = grid->layout();
+//     qDebug() << layout->count();
+//     if (layout) {
+//         for (int i = 0; i < layout->count(); ++i)
+//             QLayoutItem *current_item = layout->itemAt(i);
+//     }
 }

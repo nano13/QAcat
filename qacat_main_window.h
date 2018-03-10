@@ -12,11 +12,13 @@ public:
 private:
     QGridLayout *grid;
     
-    
+    void startLayoutIterator();
     
 private slots:
     void tryoutButtonClicked();
     void talkButtonClicked();
     void configButtonClicked();
     void quitButtonClicked();
+    
+    void activateLayoutItem(int);
 };

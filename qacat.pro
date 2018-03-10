@@ -21,9 +21,13 @@ QT += widgets
 
 # Input
 HEADERS += qacat.h\
-           qacat_main_window.h
+           qacat_main_window.h\
+           qacat_layout_iterator_thread.h\
+           qacat_pushbutton.h
 
 SOURCES += qacat.cpp\
-           qacat_main_window.cpp
+           qacat_main_window.cpp\
+           qacat_layout_iterator_thread.cpp\
+           qacat_pushbutton.cpp
 
 RESOURCES += qacat.qrc
