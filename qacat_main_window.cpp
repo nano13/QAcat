@@ -7,6 +7,7 @@
 #include <qacat_layout_iterator_thread.h>
 #include <qacat_pushbutton.h>
 #include <qacat_confirmdialog.h>
+#include <qacat_tryoutwindow.h>
 
 QAcatMainWindow :: QAcatMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,7 +41,8 @@ QAcatMainWindow :: QAcatMainWindow(QWidget *parent)
 
 void QAcatMainWindow :: tryoutButtonClicked()
 {
-    qDebug() << "tryout button pushed";
+    QAcatTryoutWindow *tryout_window = new QAcatTryoutWindow();
+    tryout_window->show();
 }
 
 void QAcatMainWindow :: talkButtonClicked()
@@ -55,23 +57,9 @@ void QAcatMainWindow :: configButtonClicked()
 
 void QAcatMainWindow :: quitButtonClicked()
 {
-    /*
-    QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Test", "Quit?",
-                                    QMessageBox::Yes|QMessageBox::No);
-    if (reply == QMessageBox::Yes) {
-        qDebug() << "Yes was clicked";
-        QApplication::quit();
-    } else {
-        qDebug() << "Yes was *not* clicked";
-    }
-    */
-    
     QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit QAcat?");
     connect(dialog, &QAcatConfirmDialog::positiveButtonClicked, this, &QAcatMainWindow::quit);
     dialog->show();
-    
-    //QCoreApplication::quit();
 }
 
 void QAcatMainWindow :: startLayoutIterator()

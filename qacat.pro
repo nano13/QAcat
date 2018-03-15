@@ -25,13 +25,15 @@ HEADERS += qacat.h\
            qacat_layout_iterator_thread.h\
            qacat_pushbutton.h\
            qacat_messagebox.h\
-           qacat_confirmdialog.h
+           qacat_confirmdialog.h\
+           qacat_tryoutwindow.h
 
 SOURCES += qacat.cpp\
            qacat_main_window.cpp\
            qacat_layout_iterator_thread.cpp\
            qacat_pushbutton.cpp\
            qacat_messagebox.cpp\
-           qacat_confirmdialog.cpp
+           qacat_confirmdialog.cpp\
+           qacat_tryoutwindow.cpp
 
 RESOURCES += qacat.qrc
