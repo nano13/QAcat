@@ -21,4 +21,6 @@ private slots:
     void quitButtonClicked();
     
     void activateLayoutItem(int);
+    
+    void quit();
 };

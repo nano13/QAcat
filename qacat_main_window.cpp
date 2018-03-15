@@ -6,8 +6,9 @@
 #include <qacat_main_window.h>
 #include <qacat_layout_iterator_thread.h>
 #include <qacat_pushbutton.h>
+#include <qacat_confirmdialog.h>
 
-QAcatMainWindow::QAcatMainWindow(QWidget *parent)
+QAcatMainWindow :: QAcatMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , grid(new QGridLayout)
 {
@@ -37,27 +38,43 @@ QAcatMainWindow::QAcatMainWindow(QWidget *parent)
     startLayoutIterator();
 }
 
-void QAcatMainWindow::tryoutButtonClicked()
+void QAcatMainWindow :: tryoutButtonClicked()
 {
     qDebug() << "tryout button pushed";
 }
 
-void QAcatMainWindow::talkButtonClicked()
+void QAcatMainWindow :: talkButtonClicked()
 {
     qDebug() << "talk button pushed";
 }
 
-void QAcatMainWindow::configButtonClicked()
+void QAcatMainWindow :: configButtonClicked()
 {
     qDebug() << "config button pushed";
 }
 
-void QAcatMainWindow::quitButtonClicked()
+void QAcatMainWindow :: quitButtonClicked()
 {
-    QCoreApplication::quit();
+    /*
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Test", "Quit?",
+                                    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        qDebug() << "Yes was clicked";
+        QApplication::quit();
+    } else {
+        qDebug() << "Yes was *not* clicked";
+    }
+    */
+    
+    QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit QAcat?");
+    connect(dialog, &QAcatConfirmDialog::positiveButtonClicked, this, &QAcatMainWindow::quit);
+    dialog->show();
+    
+    //QCoreApplication::quit();
 }
 
-void QAcatMainWindow::startLayoutIterator()
+void QAcatMainWindow :: startLayoutIterator()
 {
     QAcatLayoutIteratorThread *iterator_thread = new QAcatLayoutIteratorThread();
     connect(iterator_thread, &QAcatLayoutIteratorThread::activateLayoutItem, this, &QAcatMainWindow::activateLayoutItem);
@@ -66,7 +83,7 @@ void QAcatMainWindow::startLayoutIterator()
     iterator_thread->start();
 }
 
-void QAcatMainWindow::activateLayoutItem(int index)
+void QAcatMainWindow :: activateLayoutItem(int index)
 {
     
     QLayout *layout = grid->layout();
@@ -83,4 +100,9 @@ void QAcatMainWindow::activateLayoutItem(int index)
 //         for (int i = 0; i < layout->count(); ++i)
 //             QLayoutItem *current_item = layout->itemAt(i);
 //     }
+}
+
+void QAcatMainWindow :: quit()
+{
+    QCoreApplication::quit();
 }
