@@ -1,7 +1,7 @@
 
 #include <qacat_tryoutwindow.h>
 
-#include <qacat_layout_iterator_thread.h>
+//#include <qacat_layout_iterator_thread.h>
 #include <qacat_pushbutton.h>
 #include <qacat_confirmdialog.h>
 
@@ -13,6 +13,7 @@ QAcatTryoutWindow :: QAcatTryoutWindow(QWidget *parent)
     , instruction_label(new QLabel)
     , todo_label(new QLabel)
     , input_line(new QLineEdit)
+    , iterator_thread(new QAcatLayoutIteratorThread)
 {
     QWidget *central_widget = new QWidget();
     central_widget->setLayout(vbox);
@@ -22,14 +23,12 @@ QAcatTryoutWindow :: QAcatTryoutWindow(QWidget *parent)
     
     setCentralWidget(central_widget);
     
-    QStringList todo_list;
     todo_list << "tea" << "ate" << "tab" << "bat" << "eat";
     
     grid->addWidget(input_line, 0, 0);
     grid->addWidget(instruction_label, 0, 2);
     instruction_label->setText("Type this word:");
     grid->addWidget(todo_label, 0, 3);
-    todo_label->setText("tea");
     
     
     QAcatPushButton *b_button = new QAcatPushButton("b");
@@ -60,12 +59,28 @@ QAcatTryoutWindow :: QAcatTryoutWindow(QWidget *parent)
     
     connect(exit_button, &QAcatPushButton::clicked, this, &QAcatTryoutWindow::exitButtonClicked);
     
+    selectRandomWord();
     startLayoutIterator();
+}
+
+void QAcatTryoutWindow :: selectRandomWord()
+{
+    int random_number = qrand() % todo_list.length();
+    todo_label->setText(todo_list.at(random_number));
 }
 
 void QAcatTryoutWindow :: writeChar(QChar c)
 {
     input_line->insert(c);
+    
+    if (todo_label->text() == input_line->text())
+    {
+        clearText();
+        selectRandomWord();
+    }
+    
+    iterator_thread->reset();
+    iterator_thread->start();
 }
 
 void QAcatTryoutWindow :: clearText()
@@ -83,14 +98,14 @@ void QAcatTryoutWindow :: delChar()
 
 void QAcatTryoutWindow :: exitButtonClicked()
 {
-    QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit QAcat?");
+    QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit Tryout Area?");
     connect(dialog, &QAcatConfirmDialog::positiveButtonClicked, this, &QAcatTryoutWindow::quit);
     dialog->show();
 }
 
 void QAcatTryoutWindow :: startLayoutIterator()
 {
-    QAcatLayoutIteratorThread *iterator_thread = new QAcatLayoutIteratorThread();
+    //QAcatLayoutIteratorThread *iterator_thread = new QAcatLayoutIteratorThread();
     connect(iterator_thread, &QAcatLayoutIteratorThread::activateLayoutItem, this, &QAcatTryoutWindow::activateLayoutItem);
     
     iterator_thread->setLayout(hbox);

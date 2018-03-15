@@ -1,4 +1,7 @@
 
+#ifndef TRYOUT_WINDOW
+#define TRYOUT_WINDOW
+
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QWidget>
@@ -8,6 +11,8 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QChar>
+
+#include <qacat_layout_iterator_thread.h>
 
 class QAcatTryoutWindow : public QMainWindow
 {
@@ -22,8 +27,12 @@ private:
     QHBoxLayout *hbox;
     QLabel *instruction_label;
     QLabel *todo_label;
+    QStringList todo_list;
     QLineEdit *input_line;
     
+    QAcatLayoutIteratorThread *iterator_thread;
+    
+    void selectRandomWord();
     void startLayoutIterator();
     
 private slots:
@@ -38,3 +47,5 @@ signals:
     
     
 };
+
+#endif

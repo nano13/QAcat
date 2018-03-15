@@ -8,9 +8,14 @@ QAcatLayoutIteratorThread::QAcatLayoutIteratorThread(QThread *parent)
     
 }
 
-void QAcatLayoutIteratorThread::setLayout(QLayout *layout)
+void QAcatLayoutIteratorThread :: setLayout(QLayout *layout)
 {
     this->layout = layout->layout();
+}
+
+void QAcatLayoutIteratorThread :: reset()
+{
+    reset_thread = true;
 }
 
 void QAcatLayoutIteratorThread::run()
@@ -22,6 +27,12 @@ void QAcatLayoutIteratorThread::run()
             {
                 emit activateLayoutItem(i);
                 msleep(600);
+                
+                if (reset_thread == true)
+                {
+                    reset_thread = false;
+                    break;
+                }
             }
         }
     }
