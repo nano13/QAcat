@@ -1,7 +1,6 @@
 
 #include <qacat_tryoutwindow.h>
 
-//#include <qacat_layout_iterator_thread.h>
 #include <qacat_pushbutton.h>
 #include <qacat_confirmdialog.h>
 
@@ -25,18 +24,18 @@ QAcatTryoutWindow :: QAcatTryoutWindow(QWidget *parent)
     
     todo_list << "tea" << "ate" << "tab" << "bat" << "eat";
     
-    grid->addWidget(input_line, 0, 0);
-    grid->addWidget(instruction_label, 0, 2);
+    grid->addWidget(input_line, 0, 2);
+    grid->addWidget(instruction_label, 0, 0);
     instruction_label->setText("Type this word:");
-    grid->addWidget(todo_label, 0, 3);
+    grid->addWidget(todo_label, 0, 1);
     
     
     QAcatPushButton *b_button = new QAcatPushButton("b");
     QAcatPushButton *t_button = new QAcatPushButton("t");
     QAcatPushButton *a_button = new QAcatPushButton("a");
     QAcatPushButton *e_button = new QAcatPushButton("e");
-    QAcatPushButton *backspace_button = new QAcatPushButton("backspace");
-    QAcatPushButton *clear_button = new QAcatPushButton("clear");
+    QAcatPushButton *backspace_button = new QAcatPushButton("\u232b");
+    QAcatPushButton *clear_button = new QAcatPushButton("\u2327");
     
     QAcatPushButton *exit_button = new QAcatPushButton("exit");
     
@@ -105,7 +104,6 @@ void QAcatTryoutWindow :: exitButtonClicked()
 
 void QAcatTryoutWindow :: startLayoutIterator()
 {
-    //QAcatLayoutIteratorThread *iterator_thread = new QAcatLayoutIteratorThread();
     connect(iterator_thread, &QAcatLayoutIteratorThread::activateLayoutItem, this, &QAcatTryoutWindow::activateLayoutItem);
     
     iterator_thread->setLayout(hbox);
