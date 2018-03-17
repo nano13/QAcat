@@ -1,5 +1,5 @@
 
-#include <QWidget>
+#include <QtWidgets>
 
 class QAcatStandardKeyboardWidget : public QWidget
 {
@@ -9,6 +9,8 @@ public:
     QAcatStandardKeyboardWidget(QWidget *parent = 0);
     
 private:
+    QGridLayout *grid;
+    QStringList layout_list;
     
     
 private slots:
