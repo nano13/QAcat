@@ -9,7 +9,6 @@ public:
     QAcatStandardKeyboardWidget(QWidget *parent = 0);
     
 private:
-    QGridLayout *grid;
     QStringList layout_list;
     
     
