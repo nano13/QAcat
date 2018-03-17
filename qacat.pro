@@ -26,7 +26,11 @@ HEADERS += qacat.h\
            qacat_pushbutton.h\
            qacat_messagebox.h\
            qacat_confirmdialog.h\
-           qacat_tryoutwindow.h
+           qacat_tryoutwindow.h\
+           qacat_standard_keyboardwidget.h\
+           qacat_talkwindow.h\
+           qacat_predicted_words_widget.h\
+           qacat_favorite_phrases_widget.h
 
 SOURCES += qacat.cpp\
            qacat_main_window.cpp\
@@ -34,6 +38,10 @@ SOURCES += qacat.cpp\
            qacat_pushbutton.cpp\
            qacat_messagebox.cpp\
            qacat_confirmdialog.cpp\
-           qacat_tryoutwindow.cpp
+           qacat_tryoutwindow.cpp\
+           qacat_standard_keyboardwidget.cpp\
+           qacat_talkwindow.cpp\
+           qacat_predicted_words_widget.cpp\
+           qacat_favorite_phrases_widget.cpp
 
 RESOURCES += qacat.qrc

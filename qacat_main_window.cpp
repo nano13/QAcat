@@ -8,6 +8,7 @@
 #include <qacat_pushbutton.h>
 #include <qacat_confirmdialog.h>
 #include <qacat_tryoutwindow.h>
+#include <qacat_talkwindow.h>
 
 QAcatMainWindow :: QAcatMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -47,7 +48,8 @@ void QAcatMainWindow :: tryoutButtonClicked()
 
 void QAcatMainWindow :: talkButtonClicked()
 {
-    qDebug() << "talk button pushed";
+    QAcatTalkWindow *talk_window = new QAcatTalkWindow();
+    talk_window->show();
 }
 
 void QAcatMainWindow :: configButtonClicked()
