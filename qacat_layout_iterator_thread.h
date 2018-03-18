@@ -13,7 +13,7 @@ public:
     QAcatLayoutIteratorThread (QThread *parent = 0);
     void setLayout (QLayout *);
     void setWidgetList (QList<QWidget*>);
-    void setLayoutList (QList<QLayout*>);
+    void setLayoutList (QList<QHBoxLayout*>);
     void reset();
     
 protected:
@@ -22,16 +22,17 @@ protected:
 private:
     QLayout *layout;
     QList<QWidget*> widget_list;
-    QList<QLayout*> layout_list;
+    QList<QHBoxLayout*> layout_list;
     bool reset_thread;
     
     void iterateSingleLayout ();
     void iterateWidgetList ();
-    void iterateLayoutList ();
+    void iterateWidgetLayoutList ();
     
 signals:
     void activateLayoutItem (int);
-    void activateSubLayout (int);
+    void activateWidgetItem (int);
+    void activateWidgetLayoutItem (int);
 };
 
 #endif

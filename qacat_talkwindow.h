@@ -30,14 +30,18 @@ private:
     QList<QWidget*> widget_list;
     QAcatLayoutIteratorThread *iterator_thread;
     void startWidgetIterator();
+    int current_active_widget_index;
     
 protected:
-    void focusInEvent(QFocusEvent *);
-    void focusOutEvent(QFocusEvent *);
+    void focusInEvent(QFocusEvent*);
+    void focusOutEvent(QFocusEvent*);
     
 private slots:
+    //void keyPressEvent(QKeyEvent*);
     void sendKeyboardPressToTextEdit(QString);
+    void iterateKeyboard(QList<QHBoxLayout*>);
     void activateWidget(int);
+    void activateWidgetLayout(int layout_index);
     void exitButtonClicked();
     void quit();
     

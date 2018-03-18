@@ -12,17 +12,24 @@ QAcatLayoutIteratorThread :: QAcatLayoutIteratorThread (QThread *parent)
 void QAcatLayoutIteratorThread :: setLayout (QLayout *layout)
 {
     this -> layout = layout -> layout();
+    widget_list.clear();
+    layout_list.clear();
 }
 
 void QAcatLayoutIteratorThread :: setWidgetList (QList<QWidget*> widget_list)
 {
-    qDebug() << "set widget";
     this -> widget_list = widget_list;
+    layout = NULL;
+    layout_list.clear();
 }
 
-void QAcatLayoutIteratorThread :: setLayoutList (QList<QLayout*> layout_list)
+void QAcatLayoutIteratorThread :: setLayoutList (QList<QHBoxLayout*> layout_list)
 {
     this -> layout_list = layout_list;
+    layout = NULL;
+    widget_list.clear();
+    
+    reset_thread = true;
 }
 
 void QAcatLayoutIteratorThread :: reset()
@@ -32,27 +39,29 @@ void QAcatLayoutIteratorThread :: reset()
 
 void QAcatLayoutIteratorThread :: run()
 {
-    qDebug() << "run";
-    
-    if (widget_list.length() > 0)
+    while (true)
     {
-        qDebug() << "widget";
-        iterateWidgetList ();
-    }
-    else if (layout_list.length() > 0)
-    {
-        iterateLayoutList ();
-    }
-    else if (layout) {
-        qDebug() << "layout";
-        iterateSingleLayout ();
+        if (widget_list.length() > 0)
+        {
+            qDebug() << "widget list";
+            iterateWidgetList ();
+        }
+        else if (layout_list.length() > 0)
+        {
+            qDebug() << "layout list";
+            iterateWidgetLayoutList ();
+        }
+        else if (layout) {
+            qDebug() << "layout";
+            iterateSingleLayout ();
+        }
     }
 }
 
 void QAcatLayoutIteratorThread :: iterateSingleLayout ()
 {
-    while (true)
-    {
+    //while (true)
+    //{
         for (int i = 0; i < layout->count(); ++i)
         {
             emit activateLayoutItem (i);
@@ -64,24 +73,39 @@ void QAcatLayoutIteratorThread :: iterateSingleLayout ()
                 break;
             }
         }
-    }
+    //}
 }
 
 void QAcatLayoutIteratorThread :: iterateWidgetList ()
 {
-    qDebug() << "blubb";
-    while (true)
-    {
+    //while (true)
+    //{
         for (int i = 0; i < widget_list.count(); ++i)
         {
-            emit activateLayoutItem (i);
+            emit activateWidgetItem (i);
             msleep (600);
             
+            if (reset_thread == true)
+            {
+                reset_thread = false;
+                break;
+            }
         }
-    }
+    //}
 }
 
-void QAcatLayoutIteratorThread :: iterateLayoutList ()
+void QAcatLayoutIteratorThread :: iterateWidgetLayoutList ()
 {
-    
+    qDebug() << "iterateLayoutList";
+    for (int i = 0; i < layout_list.count(); ++i)
+    {
+        emit activateWidgetLayoutItem (i);
+        msleep (600);
+        
+        if (reset_thread == true)
+        {
+            reset_thread = false;
+            break;
+        }
+    }
 }

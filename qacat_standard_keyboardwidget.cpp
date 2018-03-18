@@ -17,7 +17,6 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     QVBoxLayout *vbox = new QVBoxLayout;
     setLayout(vbox);
     
-    QList<QHBoxLayout*> hlist;
     for (int i = 0; i <= 5; i++)
     {
         QHBoxLayout *hbox = new QHBoxLayout;
@@ -44,6 +43,16 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     }
 }
 
+void QAcatStandardKeyboardWidget :: keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Space)
+    {
+        emit iterateThis(hlist);
+    }
+    
+    QWidget::keyPressEvent(event);
+}
+
 void QAcatStandardKeyboardWidget :: keyboardPressed(QString button_str)
 {
     emit keyboardPressedSignal (button_str);
@@ -51,7 +60,6 @@ void QAcatStandardKeyboardWidget :: keyboardPressed(QString button_str)
 
 void QAcatStandardKeyboardWidget :: focusInEvent (QFocusEvent *e)
 {
-    qDebug() << "focus in";
     QPalette pal;
     pal.setColor(QPalette::Background, Qt::black);
     setPalette(pal);
@@ -61,7 +69,6 @@ void QAcatStandardKeyboardWidget :: focusInEvent (QFocusEvent *e)
 
 void QAcatStandardKeyboardWidget :: focusOutEvent (QFocusEvent *e)
 {
-    qDebug() << "focus out";
     QPalette pal;
     pal.setColor(QPalette::Background, Qt::white);
     setPalette(pal);
