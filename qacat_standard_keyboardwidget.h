@@ -11,11 +11,14 @@ public:
 private:
     QStringList layout_list;
     
+protected:
+    void focusInEvent(QFocusEvent *);
+    void focusOutEvent(QFocusEvent *);
     
 private slots:
-    
+    void keyboardPressed(QString);
     
 signals:
-    
+    void keyboardPressedSignal(QString);
     
 };

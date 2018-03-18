@@ -24,10 +24,14 @@ private:
     QTextEdit *textedit;
     QAcatStandardKeyboardWidget *keyboard;
     QAcatFavoritePhrasesWidget *phrases;
-    QAcatPredictedWordsWidget *words;
+    QAcatPredictedWordsWidget *predicted;
+    
+protected:
+    void focusInEvent(QFocusEvent *);
+    void focusOutEvent(QFocusEvent *);
     
 private slots:
-    
+    void sendKeyboardPressToTextEdit(QString);
     
 signals:
     
