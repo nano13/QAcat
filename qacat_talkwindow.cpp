@@ -10,7 +10,7 @@ QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     , keyboard (new QAcatStandardKeyboardWidget)
     , phrases (new QAcatFavoritePhrasesWidget)
     , predicted (new QAcatPredictedWordsWidget)
-    , iterator_thread(new QAcatLayoutIteratorThread)
+    , iterator_thread (new QAcatLayoutIteratorThread)
 {
     QWidget *central_widget = new QWidget();
     central_widget -> setLayout (grid);

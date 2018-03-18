@@ -1,6 +1,29 @@
 
 #include <QtWidgets>
 
+class QAcatKeyboardRowWidget : public QWidget
+{
+    Q_OBJECT
+    
+public:
+    QAcatKeyboardRowWidget(QWidget *parent = 0);
+    
+private:
+    
+    
+protected:
+    void focusInEvent(QFocusEvent*);
+    void focusOutEvent(QFocusEvent*);
+    
+private slots:
+    
+    
+signals:
+    
+    
+};
+
+
 class QAcatStandardKeyboardWidget : public QWidget
 {
     Q_OBJECT
@@ -9,6 +32,7 @@ public:
     QAcatStandardKeyboardWidget(QWidget *parent = 0);
     
 private:
+    QList<QWidget*> row_widget_list;
     QList<QHBoxLayout*> hlist;
     QStringList layout_list;
     
@@ -24,3 +48,4 @@ signals:
     void keyboardPressedSignal(QString);
     void iterateThis(QList<QHBoxLayout*>);
 };
+

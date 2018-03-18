@@ -19,6 +19,9 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     
     for (int i = 0; i <= 5; i++)
     {
+        QWidget *row = new QAcatKeyboardRowWidget();
+        row_widget_list.append (row);
+        
         QHBoxLayout *hbox = new QHBoxLayout;
         hlist.append(hbox);
     }
@@ -68,6 +71,32 @@ void QAcatStandardKeyboardWidget :: focusInEvent (QFocusEvent *e)
 }
 
 void QAcatStandardKeyboardWidget :: focusOutEvent (QFocusEvent *e)
+{
+    QPalette pal;
+    pal.setColor(QPalette::Background, Qt::white);
+    setPalette(pal);
+    
+    QWidget::focusOutEvent(e);
+}
+
+
+QAcatKeyboardRowWidget :: QAcatKeyboardRowWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    QHBoxLayout *hbox = new QHBoxLayout();
+    setLayout(hbox);
+}
+
+void QAcatKeyboardRowWidget :: focusInEvent (QFocusEvent *e)
+{
+    QPalette pal;
+    pal.setColor(QPalette::Background, Qt::black);
+    setPalette(pal);
+    
+    QWidget::focusInEvent(e);
+}
+
+void QAcatKeyboardRowWidget :: focusOutEvent (QFocusEvent *e)
 {
     QPalette pal;
     pal.setColor(QPalette::Background, Qt::white);
