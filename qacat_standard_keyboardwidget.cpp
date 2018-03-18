@@ -21,7 +21,6 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     for (int i = 0; i <= 5; i++)
     {
         QHBoxLayout *hbox = new QHBoxLayout;
-        hbox->setStretch(1, 3000);
         hlist.append(hbox);
     }
     

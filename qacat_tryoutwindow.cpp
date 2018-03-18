@@ -95,13 +95,6 @@ void QAcatTryoutWindow :: delChar()
     input_line->setText(old_content.left(old_size - 1));
 }
 
-void QAcatTryoutWindow :: exitButtonClicked()
-{
-    QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit Tryout Area?");
-    connect(dialog, &QAcatConfirmDialog::positiveButtonClicked, this, &QAcatTryoutWindow::quit);
-    dialog->show();
-}
-
 void QAcatTryoutWindow :: startLayoutIterator()
 {
     connect(iterator_thread, &QAcatLayoutIteratorThread::activateLayoutItem, this, &QAcatTryoutWindow::activateLayoutItem);
@@ -119,6 +112,13 @@ void QAcatTryoutWindow :: activateLayoutItem(int index)
         QWidget *current_widget = current_item->widget();
         current_widget->setFocus();
     }
+}
+
+void QAcatTryoutWindow :: exitButtonClicked()
+{
+    QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit Tryout Area?");
+    connect(dialog, &QAcatConfirmDialog::positiveButtonClicked, this, &QAcatTryoutWindow::quit);
+    dialog->show();
 }
 
 void QAcatTryoutWindow :: quit()

@@ -1,6 +1,8 @@
 
 #include <qacat_talkwindow.h>
 
+#include <qacat_confirmdialog.h>
+
 QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     : QMainWindow (parent)
     , grid (new QGridLayout)
@@ -8,6 +10,7 @@ QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     , keyboard (new QAcatStandardKeyboardWidget)
     , phrases (new QAcatFavoritePhrasesWidget)
     , predicted (new QAcatPredictedWordsWidget)
+    , iterator_thread(new QAcatLayoutIteratorThread)
 {
     QWidget *central_widget = new QWidget();
     central_widget -> setLayout (grid);
@@ -20,7 +23,11 @@ QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     
     connect(keyboard, &QAcatStandardKeyboardWidget::keyboardPressedSignal, this, &QAcatTalkWindow::sendKeyboardPressToTextEdit);
     
-    keyboard -> setFocus();
+    widget_list << predicted << keyboard;
+    
+    startWidgetIterator();
+    
+    //keyboard -> setFocus();
     //predicted -> setFocus();
 }
 
@@ -43,4 +50,31 @@ void QAcatTalkWindow :: focusOutEvent (QFocusEvent *e)
     setStyleSheet ("QWidget { background-color: white; color: black;}");
     
     QWidget::focusOutEvent(e);
+}
+
+void QAcatTalkWindow :: startWidgetIterator()
+{
+    connect(iterator_thread, &QAcatLayoutIteratorThread::activateLayoutItem, this, &QAcatTalkWindow::activateWidget);
+    
+    iterator_thread->setWidgetList(widget_list);
+    iterator_thread->start();
+}
+
+void QAcatTalkWindow :: activateWidget(int index)
+{
+    qDebug() << "bla";
+    widget_list[index] -> setFocus();
+}
+
+
+void QAcatTalkWindow :: exitButtonClicked()
+{
+    QAcatConfirmDialog *dialog = new QAcatConfirmDialog("Exit Tryout Area?");
+    connect(dialog, &QAcatConfirmDialog::positiveButtonClicked, this, &QAcatTalkWindow::quit);
+    dialog->show();
+}
+
+void QAcatTalkWindow :: quit()
+{
+    destroy();
 }

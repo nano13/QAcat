@@ -9,7 +9,7 @@ public:
     QAcatPredictedWordsWidget(QWidget *parent = 0);
     
 private:
-    
+    QStringList predicted_list;
     
 protected:
     void focusInEvent(QFocusEvent *);
@@ -17,9 +17,9 @@ protected:
     
     
 private slots:
-    
+    void predictionPressed(QString);
     
 signals:
-    
+    void predictionSelectedSignal(QString);
     
 };

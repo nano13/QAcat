@@ -12,6 +12,7 @@ class QAcatLayoutIteratorThread : public QThread
 public:
     QAcatLayoutIteratorThread (QThread *parent = 0);
     void setLayout (QLayout *);
+    void setWidgetList (QList<QWidget*>);
     void setLayoutList (QList<QLayout*>);
     void reset();
     
@@ -20,10 +21,12 @@ protected:
     
 private:
     QLayout *layout;
+    QList<QWidget*> widget_list;
     QList<QLayout*> layout_list;
     bool reset_thread;
     
     void iterateSingleLayout ();
+    void iterateWidgetList ();
     void iterateLayoutList ();
     
 signals:
