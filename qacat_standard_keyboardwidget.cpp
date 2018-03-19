@@ -7,6 +7,7 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     : QWidget(parent)
 {
     setMaximumSize(220, 170);
+    setMinimumSize(220, 170);
     
     layout_list << "t" << "i" << "h" << "c" << "b" << "\u232b"\
                 << "e" << "a" << "n" << "d" << "f" << "\u2423"\
@@ -21,9 +22,6 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     {
         QWidget *row = new QAcatKeyboardRowWidget();
         row_widget_list.append (row);
-        
-        QHBoxLayout *hbox = new QHBoxLayout;
-        hlist.append(hbox);
     }
     
     int i = 0;
@@ -33,16 +31,18 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
         {
             QString &chr = layout_list[i];
             QAcatPushButton *button = new QAcatPushButton(chr);
+            
             connect(button, &QAcatPushButton::clicked, this, [this, &chr]{ keyboardPressed(chr); });
-            hlist[x]->addWidget(button);
+            
+            row_widget_list[x]->layout()->addWidget(button);
             
             i++;
         }
     }
     
-    foreach (QHBoxLayout *hbox, hlist)
+    foreach (QWidget *row, row_widget_list)
     {
-        vbox->addLayout(hbox);
+        vbox->addWidget(row);
     }
 }
 
@@ -50,7 +50,8 @@ void QAcatStandardKeyboardWidget :: keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Space)
     {
-        emit iterateThis(hlist);
+        //emit iterateThis(row_widget_list);
+        emit iterateWidgetList(row_widget_list);
     }
     
     QWidget::keyPressEvent(event);
@@ -84,6 +85,7 @@ QAcatKeyboardRowWidget :: QAcatKeyboardRowWidget(QWidget *parent)
     : QWidget(parent)
 {
     QHBoxLayout *hbox = new QHBoxLayout();
+    hbox->setContentsMargins(0, 0, 0, 0);
     setLayout(hbox);
 }
 

@@ -33,7 +33,6 @@ public:
     
 private:
     QList<QWidget*> row_widget_list;
-    QList<QHBoxLayout*> hlist;
     QStringList layout_list;
     
 protected:
@@ -46,6 +45,7 @@ private slots:
     
 signals:
     void keyboardPressedSignal(QString);
-    void iterateThis(QList<QHBoxLayout*>);
+    //void iterateThis(QList<QHBoxLayout*>);
+    void iterateWidgetList(QList<QWidget*>);
 };
 

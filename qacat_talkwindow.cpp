@@ -23,7 +23,7 @@ QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     
     connect(keyboard, &QAcatStandardKeyboardWidget::keyboardPressedSignal, this, &QAcatTalkWindow::sendKeyboardPressToTextEdit);
     
-    connect(keyboard, &QAcatStandardKeyboardWidget::iterateThis, this, &QAcatTalkWindow::iterateKeyboard);
+    connect(keyboard, &QAcatStandardKeyboardWidget::iterateWidgetList, this, &QAcatTalkWindow::iterateKeyboardWidgetList);
     
     widget_list << predicted << keyboard;
     
@@ -40,9 +40,9 @@ void QAcatTalkWindow :: sendKeyboardPressToTextEdit (QString prs)
     textedit->moveCursor (QTextCursor::End);
 }
 
-void QAcatTalkWindow :: iterateKeyboard (QList<QHBoxLayout*> layout_list)
+void QAcatTalkWindow :: iterateKeyboardWidgetList (QList<QWidget*> widget_list)
 {
-    iterator_thread->setLayoutList(layout_list);
+    //iterator_thread->setWidgetList(widget_list);
 }
 
 void QAcatTalkWindow :: focusInEvent (QFocusEvent *e)
@@ -85,9 +85,8 @@ void QAcatTalkWindow :: activateWidget(int index)
 
 void QAcatTalkWindow :: activateWidgetLayout(int layout_index)
 {
-    widget_list[current_active_widget_index] -> clearFocus();
+    //widget_list[current_active_widget_index] -> clearFocus();
     QLayout *hbox = widget_list[current_active_widget_index] -> layout();
-    //hbox -> setFocus();
 }
 
 

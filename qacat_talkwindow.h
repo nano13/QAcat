@@ -39,7 +39,7 @@ protected:
 private slots:
     //void keyPressEvent(QKeyEvent*);
     void sendKeyboardPressToTextEdit(QString);
-    void iterateKeyboard(QList<QHBoxLayout*>);
+    void iterateKeyboardWidgetList(QList<QWidget*>);
     void activateWidget(int);
     void activateWidgetLayout(int layout_index);
     void exitButtonClicked();

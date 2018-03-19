@@ -14,6 +14,8 @@ void QAcatLayoutIteratorThread :: setLayout (QLayout *layout)
     this -> layout = layout -> layout();
     widget_list.clear();
     layout_list.clear();
+    
+    reset_thread = true;
 }
 
 void QAcatLayoutIteratorThread :: setWidgetList (QList<QWidget*> widget_list)
@@ -21,6 +23,8 @@ void QAcatLayoutIteratorThread :: setWidgetList (QList<QWidget*> widget_list)
     this -> widget_list = widget_list;
     layout = NULL;
     layout_list.clear();
+    
+    reset_thread = true;
 }
 
 void QAcatLayoutIteratorThread :: setLayoutList (QList<QHBoxLayout*> layout_list)
@@ -60,38 +64,32 @@ void QAcatLayoutIteratorThread :: run()
 
 void QAcatLayoutIteratorThread :: iterateSingleLayout ()
 {
-    //while (true)
-    //{
-        for (int i = 0; i < layout->count(); ++i)
+    for (int i = 0; i < layout->count(); ++i)
+    {
+        emit activateLayoutItem (i);
+        msleep (600);
+        
+        if (reset_thread == true)
         {
-            emit activateLayoutItem (i);
-            msleep (600);
-            
-            if (reset_thread == true)
-            {
-                reset_thread = false;
-                break;
-            }
+            reset_thread = false;
+            break;
         }
-    //}
+    }
 }
 
 void QAcatLayoutIteratorThread :: iterateWidgetList ()
 {
-    //while (true)
-    //{
-        for (int i = 0; i < widget_list.count(); ++i)
+    for (int i = 0; i < widget_list.count(); ++i)
+    {
+        emit activateWidgetItem (i);
+        msleep (600);
+        
+        if (reset_thread == true)
         {
-            emit activateWidgetItem (i);
-            msleep (600);
-            
-            if (reset_thread == true)
-            {
-                reset_thread = false;
-                break;
-            }
+            reset_thread = false;
+            break;
         }
-    //}
+    }
 }
 
 void QAcatLayoutIteratorThread :: iterateWidgetLayoutList ()
