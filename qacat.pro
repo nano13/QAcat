@@ -30,7 +30,8 @@ HEADERS += src/qacat.h\
            src/qacat_standard_keyboardwidget.h\
            src/qacat_talkwindow.h\
            src/qacat_predicted_words_widget.h\
-           src/qacat_favorite_phrases_widget.h
+           src/qacat_favorite_phrases_widget.h\
+           src/qacat_scanner_widget.h
 
 SOURCES += src/qacat.cpp\
            src/qacat_main_window.cpp\
@@ -42,6 +43,19 @@ SOURCES += src/qacat.cpp\
            src/qacat_standard_keyboardwidget.cpp\
            src/qacat_talkwindow.cpp\
            src/qacat_predicted_words_widget.cpp\
-           src/qacat_favorite_phrases_widget.cpp
+           src/qacat_favorite_phrases_widget.cpp\
+           src/qacat_scanner_widget.cpp
 
 RESOURCES += qacat.qrc
+
+release:DESTDIR = release
+release:OBJECTS_DIR = release/obj
+release:MOC_DIR = release/moc
+release:RCC_DIR = release/rcc
+release:UI_DIR = release/ui
+
+debug:DESTDIR = debug
+debug:OBJECTS_DIR = debug/obj
+debug:MOC_DIR = debug/moc
+debug:RCC_DIR = debug/rcc
+debug:UI_DIR = debug/ui

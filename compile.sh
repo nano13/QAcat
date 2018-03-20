@@ -5,5 +5,5 @@ make
 
 if [ $? -eq 0 ]
 then
-    ./qacat
+    ./debug/qacat
 fi
