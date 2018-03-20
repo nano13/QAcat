@@ -3,7 +3,7 @@
 #include <QApplication>
 #include <QDebug>
 
-#include <qacat_main_window.h>
+#include <src/qacat_main_window.h>
 
 int main(int argc, char *argv[])
 {

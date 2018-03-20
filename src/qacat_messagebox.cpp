@@ -1,7 +1,7 @@
 
 #include <QMessageBox>
 
-#include <qacat_messagebox.h>
+#include <src/qacat_messagebox.h>
 
 QAcatMessageBox::QAcatMessageBox(QWidget *parent)
     : QMessageBox(parent)

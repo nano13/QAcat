@@ -1,7 +1,7 @@
 
-#include <qacat_talkwindow.h>
+#include <src/qacat_talkwindow.h>
 
-#include <qacat_confirmdialog.h>
+#include <src/qacat_confirmdialog.h>
 
 QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     : QMainWindow (parent)

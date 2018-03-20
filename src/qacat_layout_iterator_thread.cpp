@@ -1,5 +1,5 @@
 
-#include <qacat_layout_iterator_thread.h>
+#include <src/qacat_layout_iterator_thread.h>
 
 #include <QtWidgets>
 #include <QLayout>

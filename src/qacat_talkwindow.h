@@ -7,10 +7,10 @@
 #include <QHBoxLayout>
 #include <QTextEdit>
 
-#include <qacat_standard_keyboardwidget.h>
-#include <qacat_favorite_phrases_widget.h>
-#include <qacat_predicted_words_widget.h>
-#include <qacat_layout_iterator_thread.h>
+#include <src/qacat_standard_keyboardwidget.h>
+#include <src/qacat_favorite_phrases_widget.h>
+#include <src/qacat_predicted_words_widget.h>
+#include <src/qacat_layout_iterator_thread.h>
 
 class QAcatTalkWindow : public QMainWindow
 {

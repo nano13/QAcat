@@ -1,8 +1,8 @@
 
-#include <qacat_tryoutwindow.h>
+#include <src/qacat_tryoutwindow.h>
 
-#include <qacat_pushbutton.h>
-#include <qacat_confirmdialog.h>
+#include <src/qacat_pushbutton.h>
+#include <src/qacat_confirmdialog.h>
 
 QAcatTryoutWindow :: QAcatTryoutWindow(QWidget *parent)
     : QMainWindow(parent)

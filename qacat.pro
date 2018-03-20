@@ -20,28 +20,28 @@ CONFIG += qt debug
 QT += widgets
 
 # Input
-HEADERS += qacat.h\
-           qacat_main_window.h\
-           qacat_layout_iterator_thread.h\
-           qacat_pushbutton.h\
-           qacat_messagebox.h\
-           qacat_confirmdialog.h\
-           qacat_tryoutwindow.h\
-           qacat_standard_keyboardwidget.h\
-           qacat_talkwindow.h\
-           qacat_predicted_words_widget.h\
-           qacat_favorite_phrases_widget.h
+HEADERS += src/qacat.h\
+           src/qacat_main_window.h\
+           src/qacat_layout_iterator_thread.h\
+           src/qacat_pushbutton.h\
+           src/qacat_messagebox.h\
+           src/qacat_confirmdialog.h\
+           src/qacat_tryoutwindow.h\
+           src/qacat_standard_keyboardwidget.h\
+           src/qacat_talkwindow.h\
+           src/qacat_predicted_words_widget.h\
+           src/qacat_favorite_phrases_widget.h
 
-SOURCES += qacat.cpp\
-           qacat_main_window.cpp\
-           qacat_layout_iterator_thread.cpp\
-           qacat_pushbutton.cpp\
-           qacat_messagebox.cpp\
-           qacat_confirmdialog.cpp\
-           qacat_tryoutwindow.cpp\
-           qacat_standard_keyboardwidget.cpp\
-           qacat_talkwindow.cpp\
-           qacat_predicted_words_widget.cpp\
-           qacat_favorite_phrases_widget.cpp
+SOURCES += src/qacat.cpp\
+           src/qacat_main_window.cpp\
+           src/qacat_layout_iterator_thread.cpp\
+           src/qacat_pushbutton.cpp\
+           src/qacat_messagebox.cpp\
+           src/qacat_confirmdialog.cpp\
+           src/qacat_tryoutwindow.cpp\
+           src/qacat_standard_keyboardwidget.cpp\
+           src/qacat_talkwindow.cpp\
+           src/qacat_predicted_words_widget.cpp\
+           src/qacat_favorite_phrases_widget.cpp
 
 RESOURCES += qacat.qrc

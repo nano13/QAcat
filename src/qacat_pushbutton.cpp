@@ -1,7 +1,7 @@
 
 #include <QPushButton>
 
-#include <qacat_pushbutton.h>
+#include <src/qacat_pushbutton.h>
 
 QAcatPushButton :: QAcatPushButton (QWidget *parent)
     : QPushButton (parent)

@@ -1,7 +1,7 @@
 
-#include <qacat_standard_keyboardwidget.h>
+#include <src/qacat_standard_keyboardwidget.h>
 
-#include <qacat_pushbutton.h>
+#include <src/qacat_pushbutton.h>
 
 QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
     : QWidget(parent)

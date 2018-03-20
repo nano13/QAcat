@@ -1,8 +1,8 @@
 
-#include <qacat_confirmdialog.h>
+#include <src/qacat_confirmdialog.h>
 
-#include <qacat_pushbutton.h>
-#include <qacat_layout_iterator_thread.h>
+#include <src/qacat_pushbutton.h>
+#include <src/qacat_layout_iterator_thread.h>
 
 QAcatConfirmDialog :: QAcatConfirmDialog(QString label_text, QWidget *parent)
     : QDialog(parent)

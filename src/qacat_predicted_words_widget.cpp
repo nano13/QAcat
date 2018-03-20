@@ -1,7 +1,7 @@
 
-#include <qacat_predicted_words_widget.h>
+#include <src/qacat_predicted_words_widget.h>
 
-#include <qacat_pushbutton.h>
+#include <src/qacat_pushbutton.h>
 
 #include <QtWidgets>
 #include <QGridLayout>

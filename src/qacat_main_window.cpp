@@ -3,12 +3,12 @@
 #include <QWidget>
 #include <QGridLayout>
 
-#include <qacat_main_window.h>
-#include <qacat_layout_iterator_thread.h>
-#include <qacat_pushbutton.h>
-#include <qacat_confirmdialog.h>
-#include <qacat_tryoutwindow.h>
-#include <qacat_talkwindow.h>
+#include <src/qacat_main_window.h>
+#include <./src/qacat_layout_iterator_thread.h>
+#include <src/qacat_pushbutton.h>
+#include <src/qacat_confirmdialog.h>
+#include <src/qacat_tryoutwindow.h>
+#include <src/qacat_talkwindow.h>
 
 QAcatMainWindow :: QAcatMainWindow(QWidget *parent)
     : QMainWindow(parent)
