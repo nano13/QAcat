@@ -1,19 +1,20 @@
 
+#include <src/qacat_scanner_widget.h>
+
 #include <QtWidgets>
 
-class QAcatKeyboardRowWidget : public QWidget
+class QAcatKeyboardRowWidget : public QAcatScannerWidget
 {
     Q_OBJECT
     
 public:
-    QAcatKeyboardRowWidget(QWidget *parent = 0);
+    QAcatKeyboardRowWidget(QAcatScannerWidget *parent = 0);
     
 private:
     
     
 protected:
-    void focusInEvent(QFocusEvent*);
-    void focusOutEvent(QFocusEvent*);
+    
     
 private slots:
     
@@ -24,20 +25,20 @@ signals:
 };
 
 
-class QAcatStandardKeyboardWidget : public QWidget
+
+class QAcatStandardKeyboardWidget : public QAcatScannerWidget
 {
     Q_OBJECT
     
 public:
-    QAcatStandardKeyboardWidget(QWidget *parent = 0);
+    QAcatStandardKeyboardWidget(QAcatScannerWidget *parent = 0);
     
 private:
     QList<QWidget*> row_widget_list;
     QStringList layout_list;
     
 protected:
-    void focusInEvent(QFocusEvent*);
-    void focusOutEvent(QFocusEvent*);
+    
     
 private slots:
     void keyPressEvent(QKeyEvent*);

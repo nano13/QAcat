@@ -3,8 +3,8 @@
 
 #include <src/qacat_pushbutton.h>
 
-QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QWidget *parent)
-    : QWidget(parent)
+QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QAcatScannerWidget *parent)
+    : QAcatScannerWidget(parent)
 {
     setMaximumSize(220, 170);
     setMinimumSize(220, 170);
@@ -62,47 +62,13 @@ void QAcatStandardKeyboardWidget :: keyboardPressed(QString button_str)
     emit keyboardPressedSignal (button_str);
 }
 
-void QAcatStandardKeyboardWidget :: focusInEvent (QFocusEvent *e)
-{
-    QPalette pal;
-    pal.setColor(QPalette::Background, Qt::black);
-    setPalette(pal);
-    
-    QWidget::focusInEvent(e);
-}
-
-void QAcatStandardKeyboardWidget :: focusOutEvent (QFocusEvent *e)
-{
-    QPalette pal;
-    pal.setColor(QPalette::Background, Qt::white);
-    setPalette(pal);
-    
-    QWidget::focusOutEvent(e);
-}
 
 
-QAcatKeyboardRowWidget :: QAcatKeyboardRowWidget(QWidget *parent)
-    : QWidget(parent)
+
+QAcatKeyboardRowWidget :: QAcatKeyboardRowWidget(QAcatScannerWidget *parent)
+    : QAcatScannerWidget(parent)
 {
     QHBoxLayout *hbox = new QHBoxLayout();
     hbox->setContentsMargins(0, 0, 0, 0);
     setLayout(hbox);
-}
-
-void QAcatKeyboardRowWidget :: focusInEvent (QFocusEvent *e)
-{
-    QPalette pal;
-    pal.setColor(QPalette::Background, Qt::black);
-    setPalette(pal);
-    
-    QWidget::focusInEvent(e);
-}
-
-void QAcatKeyboardRowWidget :: focusOutEvent (QFocusEvent *e)
-{
-    QPalette pal;
-    pal.setColor(QPalette::Background, Qt::white);
-    setPalette(pal);
-    
-    QWidget::focusOutEvent(e);
 }
