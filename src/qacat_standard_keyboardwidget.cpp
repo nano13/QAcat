@@ -44,6 +44,8 @@ QAcatStandardKeyboardWidget :: QAcatStandardKeyboardWidget(QAcatScannerWidget *p
     {
         vbox->addWidget(row);
     }
+    
+    startLayoutIterator();
 }
 
 void QAcatStandardKeyboardWidget :: keyPressEvent(QKeyEvent *event)
@@ -51,7 +53,7 @@ void QAcatStandardKeyboardWidget :: keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Space)
     {
         //emit iterateThis(row_widget_list);
-        emit iterateWidgetList(row_widget_list);
+        //emit iterateWidgetList(row_widget_list);
     }
     
     QWidget::keyPressEvent(event);

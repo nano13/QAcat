@@ -15,6 +15,7 @@ public:
     void setWidgetList (QList<QWidget*>);
     void setLayoutList (QList<QHBoxLayout*>);
     void reset();
+    void halt();
     
 protected:
     void run();
@@ -24,6 +25,7 @@ private:
     QList<QWidget*> widget_list;
     QList<QHBoxLayout*> layout_list;
     bool reset_thread;
+    bool halt_thread;
     
     void iterateSingleLayout ();
     void iterateWidgetList ();

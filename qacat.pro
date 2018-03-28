@@ -20,8 +20,7 @@ CONFIG += qt debug
 QT += widgets
 
 # Input
-HEADERS += src/qacat.h\
-           src/qacat_main_window.h\
+HEADERS += src/qacat_main_window.h\
            src/qacat_layout_iterator_thread.h\
            src/qacat_pushbutton.h\
            src/qacat_messagebox.h\

@@ -6,12 +6,15 @@
 
 QAcatLayoutIteratorThread :: QAcatLayoutIteratorThread (QThread *parent)
 {
+    reset_thread = false;
+    halt_thread = false;
     
+    setTerminationEnabled(true);
 }
 
 void QAcatLayoutIteratorThread :: setLayout (QLayout *layout)
 {
-    this -> layout = layout -> layout();
+    this -> layout = layout;// -> layout();
     widget_list.clear();
     layout_list.clear();
     
@@ -41,9 +44,15 @@ void QAcatLayoutIteratorThread :: reset()
     reset_thread = true;
 }
 
+void QAcatLayoutIteratorThread :: halt()
+{
+    reset_thread = true;
+    halt_thread = true;
+}
+
 void QAcatLayoutIteratorThread :: run()
 {
-    while (true)
+    while (halt_thread == false)
     {
         if (widget_list.length() > 0)
         {
@@ -60,6 +69,7 @@ void QAcatLayoutIteratorThread :: run()
             iterateSingleLayout ();
         }
     }
+    qDebug() << "QUIT";
 }
 
 void QAcatLayoutIteratorThread :: iterateSingleLayout ()
@@ -69,7 +79,7 @@ void QAcatLayoutIteratorThread :: iterateSingleLayout ()
         emit activateLayoutItem (i);
         msleep (600);
         
-        if (reset_thread == true)
+        if (reset_thread)
         {
             reset_thread = false;
             break;
@@ -84,7 +94,7 @@ void QAcatLayoutIteratorThread :: iterateWidgetList ()
         emit activateWidgetItem (i);
         msleep (600);
         
-        if (reset_thread == true)
+        if (reset_thread)
         {
             reset_thread = false;
             break;
@@ -100,7 +110,7 @@ void QAcatLayoutIteratorThread :: iterateWidgetLayoutList ()
         emit activateWidgetLayoutItem (i);
         msleep (600);
         
-        if (reset_thread == true)
+        if (reset_thread)
         {
             reset_thread = false;
             break;

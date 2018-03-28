@@ -12,7 +12,7 @@
 #include <QLineEdit>
 #include <QChar>
 
-#include <./src/qacat_layout_iterator_thread.h>
+#include <src/qacat_layout_iterator_thread.h>
 
 class QAcatTryoutWindow : public QMainWindow
 {

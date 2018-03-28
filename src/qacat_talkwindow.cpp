@@ -27,7 +27,7 @@ QAcatTalkWindow :: QAcatTalkWindow (QWidget *parent)
     
     widget_list << predicted << keyboard;
     
-    startWidgetIterator();
+    //startWidgetIterator();
     
     //keyboard -> setFocus();
     //predicted -> setFocus();
